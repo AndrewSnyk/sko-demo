@@ -1,0 +1,42 @@
+# Snyk security scanning for PR/CI - enables safe use of Cursor Cloud Agents.
+# Per workshop README: when using Cloud Agents, run snyk test + snyk code test in CI.
+# https://docs.snyk.io/developer-tools/snyk-ci-cd-integrations/github-actions-for-snyk-setup-and-checking-for-vulnerabilities
+# Add SNYK_TOKEN in repo secrets: https://github.com/AndrewSnyk/sko2026-secure-ai-dev-advanced-workshop/settings/secrets/actions
+
+name: Snyk Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  snyk:
+    name: Snyk (Open Source + Code)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Install Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Snyk Open Source (dependencies)
+        run: snyk test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Snyk Code (first-party code)
+        run: snyk code test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
