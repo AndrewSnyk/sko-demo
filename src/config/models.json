@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "id": "gpt-4.1",
+      "provider": "openai",
+      "name": "GPT-4.1",
+      "description": "OpenAI GPT-4.1 latest (1M token context, strong coding/instruction-following)",
+      "useCase": "production, Best-of-N comparison"
+    },
+    {
+      "id": "gpt-5",
+      "provider": "openai",
+      "name": "GPT-5",
+      "description": "OpenAI GPT-5 latest flagship model",
+      "useCase": "production, Best-of-N comparison"
+    },
+    {
+      "id": "claude-2.1-20240229",
+      "provider": "anthropic",
+      "name": "Claude 2.1 (legacy)",
+      "description": "Anthropic Claude 2.1 from ~2024. Known issues: prompt injection, hidden Unicode/ASCII smuggling, inverse-prompt style bypasses. Use for workshop security demos only.",
+      "useCase": "workshop demos, vulnerability testing, security training",
+      "knownVulnerabilities": [
+        "Prompt injection / jailbreak",
+        "Hidden instruction injection (Unicode tags)",
+        "Inverse-prompt style restriction bypass"
+      ]
+    }
+  ]
+}
