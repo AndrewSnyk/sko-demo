@@ -191,6 +191,22 @@ Create a rate limiting middleware that limits requests to 100 per minute per IP 
 
 ---
 
+## AI Assets for Snyk EVO
+
+This repo includes sample AI assets so you can test [Snyk EVO](https://evo.ai.snyk.io/) (agentic security for AI-native apps):
+
+| Asset | Location |
+|-------|----------|
+| CycloneDX 1.6 AI-BOM (models + datasets) | `aibom.json` |
+| Model config (GPT-4.1, GPT-5, Claude 2.1 legacy) | `src/config/models.json` |
+| Dataset manifest | `src/config/datasets.json` |
+| AI registry (code that touches models/datasets) | `src/ai/registry.js` |
+| AI tools config | `config/ai-tools.json` |
+
+See **[docs/AI_ASSETS.md](docs/AI_ASSETS.md)** for the full inventory and how EVO discovers them.
+
+---
+
 ## Troubleshooting
 
 ### Server won't start

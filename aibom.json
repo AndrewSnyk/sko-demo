@@ -1,0 +1,110 @@
+{
+  "$schema": "https://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:550e8400-e29b-41d4-a716-446655440001",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-01-27T00:00:00Z",
+    "tools": [{"vendor": "SKO Demo", "name": "AI-BOM", "version": "1.0"}],
+    "component": {
+      "type": "application",
+      "name": "secure-ai-dev-advanced-workshop",
+      "version": "1.0.0",
+      "description": "Workshop project with AI model inventory for Snyk EVO testing."
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:openai/gpt-4.1@latest",
+      "type": "machine-learning-model",
+      "publisher": "OpenAI",
+      "name": "GPT-4.1",
+      "version": "latest",
+      "description": "OpenAI GPT-4.1 latest (1M token context, strong coding/instruction-following). Use case: production, Best-of-N comparison.",
+      "modelCard": {
+        "modelParameters": {
+          "task": "text-generation",
+          "architectureFamily": "transformer",
+          "datasets": [{"ref": "dataset-workshop-demo"}],
+          "inputs": [{"format": "text"}],
+          "outputs": [{"format": "text"}]
+        },
+        "considerations": {
+          "useCases": ["Production", "Best-of-N comparison"],
+          "technicalLimitations": ["Context window limits apply"]
+        }
+      },
+      "externalReferences": [{"type": "documentation", "url": "https://platform.openai.com/docs/models/gpt-4.1"}],
+      "tags": ["openai", "gpt-4", "production"]
+    },
+    {
+      "bom-ref": "pkg:openai/gpt-5@latest",
+      "type": "machine-learning-model",
+      "publisher": "OpenAI",
+      "name": "GPT-5",
+      "version": "latest",
+      "description": "OpenAI GPT-5 latest flagship model. Use case: production, Best-of-N comparison.",
+      "modelCard": {
+        "modelParameters": {
+          "task": "text-generation",
+          "architectureFamily": "transformer",
+          "datasets": [{"ref": "dataset-workshop-demo"}],
+          "inputs": [{"format": "text"}],
+          "outputs": [{"format": "text"}]
+        },
+        "considerations": {
+          "useCases": ["Production", "Best-of-N comparison"]
+        }
+      },
+      "externalReferences": [{"type": "documentation", "url": "https://platform.openai.com/docs/models/gpt-5"}],
+      "tags": ["openai", "gpt-5", "production"]
+    },
+    {
+      "bom-ref": "pkg:anthropic/claude-2.1-20240229",
+      "type": "machine-learning-model",
+      "publisher": "Anthropic",
+      "name": "Claude 2.1 (legacy)",
+      "version": "20240229",
+      "description": "Anthropic Claude 2.1 from ~2024. Known issues: prompt injection, hidden Unicode/ASCII smuggling, inverse-prompt style bypasses. Use for workshop security demos only.",
+      "modelCard": {
+        "modelParameters": {
+          "task": "text-generation",
+          "architectureFamily": "transformer",
+          "datasets": [{"ref": "dataset-workshop-demo"}],
+          "inputs": [{"format": "text"}],
+          "outputs": [{"format": "text"}]
+        },
+        "considerations": {
+          "useCases": ["Workshop demos", "Vulnerability testing", "Security training"],
+          "technicalLimitations": [
+            "Prompt injection / jailbreak",
+            "Hidden instruction injection (Unicode tags)",
+            "Inverse-prompt style restriction bypass"
+          ],
+          "ethicalConsiderations": [{"name": "Known prompt injection vectors", "mitigationStrategy": "Use for security training only; do not use in production."}]
+        }
+      },
+      "externalReferences": [{"type": "advisory", "url": "https://docs.anthropic.com/en/docs/about-claude/security"}],
+      "tags": ["anthropic", "claude-2.1", "legacy", "security-demo"]
+    },
+    {
+      "bom-ref": "dataset-workshop-demo",
+      "type": "data",
+      "publisher": "SKO Demo",
+      "name": "Workshop Demo Dataset",
+      "version": "1.0",
+      "description": "Reference dataset for Secure AI Dev workshop and EVO testing; synthetic and public benchmarks only.",
+      "data": [{"type": "dataset", "contents": {"url": "https://github.com/AndrewSnyk/sko-demo"}, "classification": "public"}]
+    },
+    {
+      "bom-ref": "dataset-swe-bench-ref",
+      "type": "data",
+      "publisher": "SKO Demo",
+      "name": "SWE-bench Reference",
+      "version": "1.0",
+      "description": "Reference to SWE-bench style coding benchmark used for model evaluation in workshop context.",
+      "data": [{"type": "dataset", "contents": {"url": "https://www.swebench.com/"}, "classification": "public"}]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "SKO Demo AI Tools",
+  "description": "AI model and tool registry for Secure AI Dev workshop and Snyk EVO testing.",
+  "version": "1.0.0",
+  "models": [
+    "gpt-4.1",
+    "gpt-5",
+    "claude-2.1-20240229"
+  ],
+  "tools": [
+    {
+      "id": "workshop-best-of-n",
+      "name": "Best-of-N",
+      "description": "Run same prompt across multiple models (Cursor Best-of-N).",
+      "modelIds": ["gpt-4.1", "gpt-5", "claude-2.1-20240229"]
+    },
+    {
+      "id": "workshop-security-demo",
+      "name": "Security Demo",
+      "description": "Vulnerability testing and security training with legacy Claude.",
+      "modelIds": ["claude-2.1-20240229"]
+    }
+  ],
+  "mcpServers": []
+}

@@ -1,0 +1,20 @@
+{
+  "datasets": [
+    {
+      "id": "workshop-demo",
+      "name": "Workshop Demo Dataset",
+      "description": "Synthetic and public benchmark references for Secure AI Dev workshop and Snyk EVO testing.",
+      "classification": "public",
+      "ref": "dataset-workshop-demo",
+      "usedBy": ["gpt-4.1", "gpt-5", "claude-2.1-20240229"]
+    },
+    {
+      "id": "swe-bench-ref",
+      "name": "SWE-bench Reference",
+      "description": "Reference to SWE-bench coding benchmark for model evaluation.",
+      "classification": "public",
+      "url": "https://www.swebench.com/",
+      "usedBy": ["gpt-4.1", "gpt-5"]
+    }
+  ]
+}
