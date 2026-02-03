@@ -32,11 +32,11 @@ jobs:
         uses: snyk/actions/setup@master
 
       - name: Snyk Open Source (dependencies)
-        run: snyk test --severity-threshold=high
+        run: snyk test --severity-threshold=high --org=ab787899-d2cd-4f68-8226-5b2fd95c456e
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk Code (first-party code)
-        run: snyk code test --severity-threshold=high
+        run: snyk code test --severity-threshold=high --org=ab787899-d2cd-4f68-8226-5b2fd95c456e
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
