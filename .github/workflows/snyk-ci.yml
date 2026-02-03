@@ -1,7 +1,8 @@
 # Snyk security scanning for PR/CI - enables safe use of Cursor Cloud Agents.
 # Per workshop README: when using Cloud Agents, run snyk test + snyk code test in CI.
 # https://docs.snyk.io/developer-tools/snyk-ci-cd-integrations/github-actions-for-snyk-setup-and-checking-for-vulnerabilities
-# Add SNYK_TOKEN in repo secrets: https://github.com/AndrewSnyk/sko2026-secure-ai-dev-advanced-workshop/settings/secrets/actions
+# Add SNYK_TOKEN in repo secrets (required): https://github.com/AndrewSnyk/sko-demo/settings/secrets/actions
+# Token must be created in Snyk org ab787899-d2cd-4f68-8226-5b2fd95c456e (evo): https://app.snyk.io
 
 name: Snyk Security Scan
 
@@ -30,6 +31,17 @@ jobs:
 
       - name: Install Snyk CLI
         uses: snyk/actions/setup@master
+
+      - name: Check Snyk token
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          if [ -z "$SNYK_TOKEN" ]; then
+            echo "::error::SNYK_TOKEN repository secret is not set or is empty."
+            echo "Add it at: https://github.com/AndrewSnyk/sko-demo/settings/secrets/actions"
+            echo "Create a token in the evo org: https://app.snyk.io → switch to org (ab787899-d2cd-4f68-8226-5b2fd95c456e) → Settings → General → API token"
+            exit 1
+          fi
 
       - name: Snyk Open Source (dependencies)
         run: snyk test --severity-threshold=high --org=ab787899-d2cd-4f68-8226-5b2fd95c456e

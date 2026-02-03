@@ -235,6 +235,18 @@ npm start
 2. Search for "Snyk" and verify it's installed
 3. Authenticate: Cmd/Ctrl+Shift+P → "Snyk: Authenticate"
 
+### GitHub Actions Snyk 401 (SNYK-0005)
+
+If the Snyk workflow fails with "Authentication credentials not recognized" or 401 Unauthorized:
+
+1. **Create a Snyk API token** in the correct org:
+   - Go to [app.snyk.io](https://app.snyk.io) and switch to the **evo** org (ID `ab787899-d2cd-4f68-8226-5b2fd95c456e`).
+   - **Settings** → **General** (or Account) → **API token** → create/copy a token.
+2. **Add it as a GitHub secret:**
+   - Repo **Settings** → **Secrets and variables** → **Actions** → [Add repository secret](https://github.com/AndrewSnyk/sko-demo/settings/secrets/actions).
+   - Name: `SNYK_TOKEN`, Value: paste the token.
+3. Re-run the failed workflow from the **Actions** tab.
+
 ### Best-of-N not showing multiple options
 
 - Ensure you clicked "1x" and selected "Multiple models"
